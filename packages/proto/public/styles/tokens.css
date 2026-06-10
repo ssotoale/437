@@ -19,3 +19,8 @@
 
   --page-grids: 4;
 }
+
+body.dark-mode {
+  --color-background-page: #1C1C1C;
+  --color-text: #FDF6EC;
+}

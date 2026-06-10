@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Corrido de Boyle Heights",
+    "href": "mural.html",
+    "status": "Pristine"
+  },
+  {
+    "name": "From Brooklyn to Sunset",
+    "href": "mural2.html",
+    "status": "Pristine"
+  },
+  {
+    "name": "The Greatest Love",
+    "href": "mural3.html",
+    "status": "Vandalized"
+  }
+]
