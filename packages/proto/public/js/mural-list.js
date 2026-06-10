@@ -1,42 +1,50 @@
 import { html, shadow } from "@unbndl/html";
+import { createViewModel, fromAttributes } from "@unbndl/view";
+import { fromAuth } from "@unbndl/auth";
 
 function renderMural(mural) {
-  const { name, href } = mural;
-
+  const { name, _id } = mural;
   return html`
-    <li><a href=${href}>${name}</a></li>
+    <li><a href=/mural.html?id=${_id}>${name}</a></li>
   `;
 }
 
 export class MuralListElement extends HTMLElement {
+  viewModel = createViewModel({
+    token: undefined,
+    authenticated: false,
+    murals: []
+  }).with(fromAttributes(this), "src")
+    .with(fromAuth(this), "authenticated", "token");
+
+  view = html`
+    <ul class="murals">
+      ${($) => $.murals.map(renderMural)}
+    </ul>
+  `;
+
+  get authorization() {
+    const $ = this.viewModel.toObject();
+    if ($.authenticated)
+      return { Authorization: `Bearer ${$.token}` };
+    else return {};
+  }
+
   constructor() {
     super();
-    shadow(this);
-    // no template
-  }
+    shadow(this).replace(this.viewModel.render(this.view));
 
-  static observedAttributes = ["src"];
-
-  attributeChangedCallback(name, _, newValue) {
-    if (name === "src") {
-      this.hydrate(newValue).then((data) => {
-        const view = MuralListElement.render(data);
-        shadow(this).replace(view);
-      });
-    }
-  }
-
-  static render(data) {
-    const murals = data || [];
-    return html`
-      <ul class="murals">
-        ${murals.map(renderMural)}
-      </ul>
-    `;
+    this.viewModel.createEffect(($) => {
+      if ($.authenticated && $.src) {
+        this.hydrate($.src).then((data) => {
+          this.viewModel.set("murals", data);
+        });
+      }
+    });
   }
 
   hydrate(src) {
-    return fetch(src)
+    return fetch(src, { headers: this.authorization })
       .then((response) => {
         if (response.status !== 200)
           throw `HTTP Status ${response.status}`;

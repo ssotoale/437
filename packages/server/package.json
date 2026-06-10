@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "type": "module",
-"scripts": {
+  "scripts": {
     "dev": "nodemon",
     "build": "npx tsc",
     "start": "npm run build && npm run start:node",
@@ -15,10 +15,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.2.1"
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.9.2",
     "cross-env": "^10.1.0",
     "nodemon": "^3.1.14",

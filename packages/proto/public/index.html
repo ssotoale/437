@@ -13,51 +13,34 @@
     <script type="importmap">
     {
       "imports": {
-        "@unbndl/html": "https://unpkg.com/@unbndl/html"
+        "@unbndl/auth": "https://unpkg.com/@unbndl/auth",
+        "@unbndl/html": "https://unpkg.com/@unbndl/html",
+        "@unbndl/view": "https://unpkg.com/@unbndl/view"
       }
     }
     </script>
     <script type="module">
       import { define } from "@unbndl/html";
+      import { Auth } from "@unbndl/auth";
+      import { MuralHeaderElement } from "/js/header.js";
       import { MuralListElement } from "/js/mural-list.js";
 
       define({
+        "auth-provider": Auth.Provider,
+        "mural-header": MuralHeaderElement,
         "mural-list": MuralListElement
       });
     </script>
   </head>
   <body>
-    <header>
-      <h1><svg class="icon"><use href="/icons/murals.svg#icon-painting" /></svg> Boyle Heights Murals</h1>
-      <nav><a href="mural.html">Browse</a></nav>
-      <label>
-        <input type="checkbox" autocomplete="off" />
-        Dark mode
-      </label>
-    </header>
+    <auth-provider>
+      <mural-header></mural-header>
 
-    <mural-list src="/data/murals.json">
-      <!-- contents will be replaced by fetched data -->
-    </mural-list>
-
-    <script type="module">
-      document.querySelector('header label').onchange = function (event) {
-        event.stopPropagation();
-        event.currentTarget.dispatchEvent(
-          new CustomEvent('darkmode:toggle', {
-            bubbles: true,
-            detail: { checked: event.target.checked }
-          })
-        );
-      };
-
-      document.body.addEventListener('darkmode:toggle', function (event) {
-        if (event.detail.checked) {
-          event.currentTarget.classList.add('dark-mode');
-        } else {
-          event.currentTarget.classList.remove('dark-mode');
-        }
-      });
-    </script>
+      <main class="page">
+        <mural-list src="/api/murals">
+          <!-- contents will be replaced by fetched data -->
+        </mural-list>
+      </main>
+    </auth-provider>
   </body>
 </html>
