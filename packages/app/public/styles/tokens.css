@@ -1,0 +1,26 @@
+:root {
+  --color-background-page: #ffffff;
+  --color-background-header: #E8621A;
+  --color-accent: #1A5CE8;
+  --color-text: #1C1C1C;
+  --color-text-inverted: #FDF6EC;
+  --color-link: var(--color-accent);
+
+  --font-body: Lora, Georgia, "Times New Roman", serif;
+  --font-display: Oswald, "Trebuchet MS", "Arial Narrow", Arial, sans-serif;
+
+  --size-font-body: 0.875rem;
+  --size-font-title: 2.5rem;
+  --style-font-title: normal;
+
+  --size-spacing-small: 0.5rem;
+  --size-spacing-medium: 1rem;
+  --size-spacing-large: 2rem;
+
+  --page-grids: 4;
+}
+
+body.dark-mode {
+  --color-background-page: #1C1C1C;
+  --color-text: #FDF6EC;
+}

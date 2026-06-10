@@ -1,9 +1,6 @@
 // src/services/mongo.ts
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { webcrypto } from "crypto";
-(globalThis as any).crypto = webcrypto;
-
 mongoose.set("debug", true);
 dotenv.config();
 

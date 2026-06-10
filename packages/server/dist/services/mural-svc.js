@@ -15,9 +15,9 @@ function index() {
     return MuralModel.find();
 }
 function get(id) {
-    return MuralModel.find({ id })
-        .then((list) => list[0])
-        .catch((err) => {
+    return MuralModel.findById(id)
+        .then((found) => found ?? undefined)
+        .catch(() => {
         throw `${id} Not Found`;
     });
 }
@@ -26,7 +26,7 @@ function create(json) {
     return t.save();
 }
 function update(id, mural) {
-    return MuralModel.findOneAndUpdate({ id }, mural, {
+    return MuralModel.findOneAndUpdate({ _id: id }, mural, {
         new: true
     }).then((updated) => {
         if (!updated)
@@ -36,7 +36,7 @@ function update(id, mural) {
     });
 }
 function remove(id) {
-    return MuralModel.findOneAndDelete({ id }).then((deleted) => {
+    return MuralModel.findOneAndDelete({ _id: id }).then((deleted) => {
         if (!deleted)
             throw `${id} not deleted`;
     });

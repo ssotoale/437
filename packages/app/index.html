@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boyle Heights Murals</title>
+  <link rel="stylesheet" href="/styles/tokens.css" />
+  <link rel="stylesheet" href="/styles/reset.css" />
+  <link rel="stylesheet" href="/styles/page.css" />
+</head>
+<body>
+  <history-provider base="/app">
+    <auth-provider redirect="/login.html">
+      <store-provider>
+        <article class="page">
+          <mural-header></mural-header>
+          <router-switch></router-switch>
+        </article>
+      </store-provider>
+    </auth-provider>
+  </history-provider>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

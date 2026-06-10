@@ -1,4 +1,5 @@
 export interface Mural {
+    _id?: string;
     name: string;
     artist: string;
     description: string;

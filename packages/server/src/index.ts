@@ -1,6 +1,6 @@
 // src/index.ts
-import { webcrypto } from "crypto";
-(globalThis as any).crypto = webcrypto;
+import fs from "node:fs/promises";
+import path from "path";
 import { connect } from "./services/mongo.ts";
 import express, { Request, Response } from "express";
 import murals from "./routes/murals.ts";
@@ -21,6 +21,14 @@ app.get("/hello", (req: Request, res: Response) => {
 
 app.use("/auth", auth);
 app.use("/api/murals", authenticateUser, murals);
+
+// SPA Routes: /app/...
+app.use("/app", (_req: Request, res: Response) => {
+  const indexHtml = path.resolve(staticDir, "index.html");
+  fs.readFile(indexHtml, { encoding: "utf8" }).then((html) =>
+    res.send(html)
+  );
+});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

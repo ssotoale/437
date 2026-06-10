@@ -1,0 +1,21 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npx vite",
+    "build": "npx tsc && npx vite build"
+  },
+  "dependencies": {
+    "@unbndl/auth": "latest",
+    "@unbndl/html": "latest",
+    "@unbndl/store": "^1.0.11",
+    "@unbndl/switch": "latest",
+    "@unbndl/view": "latest",
+    "server": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "latest",
+    "vite": "latest"
+  }
+}

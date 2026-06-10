@@ -1,0 +1,73 @@
+body {
+  background-color: var(--color-background-page);
+  color: var(--color-text);
+  font: var(--size-font-body) var(--font-body);
+  display: grid;
+  grid-template-columns: repeat(var(--page-grids), 1fr);
+  grid-template-rows: auto 1fr;
+}
+
+header {
+  background-color: var(--color-background-header);
+  color: var(--color-text-inverted);
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--size-spacing-medium);
+}
+
+body > :not(header) {
+  grid-column: 1 / -1;
+  margin: var(--size-spacing-medium);
+}
+
+header, h1, h2 {
+  font-family: var(--font-display);
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: var(--size-font-title);
+  font-style: var(--style-font-title);
+}
+
+header h1 {
+  color: var(--color-text-inverted);
+}
+
+a {
+  color: var(--color-link);
+}
+
+svg.icon {
+  display: inline;
+  height: 2em;
+  width: 2em;
+  vertical-align: top;
+  fill: currentColor;
+}
+
+header nav a {
+  color: var(--color-text-inverted);
+}
+
+ul.murals {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: var(--size-spacing-medium);
+  padding: 0;
+}
+
+ul.murals > li {
+  flex: 1;
+  min-width: 12rem;
+  padding: var(--size-spacing-small);
+  border: 1px solid var(--color-accent);
+}
+@media screen and (max-width: 30rem) {
+  body {
+    --page-grids: 2;
+  }
+}

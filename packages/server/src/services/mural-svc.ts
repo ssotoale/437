@@ -23,9 +23,9 @@ function index(): Promise<Mural[]> {
 }
 
 function get(id: string): Promise<Mural | undefined> {
-  return MuralModel.find({ id })
-    .then((list) => list[0])
-    .catch((err) => {
+  return MuralModel.findById(id)
+    .then((found) => found ?? undefined)
+    .catch(() => {
       throw `${id} Not Found`;
     });
 }
@@ -39,7 +39,7 @@ function update(
   id: string,
   mural: Mural
 ): Promise<Mural | undefined> {
-  return MuralModel.findOneAndUpdate({ id }, mural, {
+  return MuralModel.findOneAndUpdate({ _id: id }, mural, {
     new: true
   }).then((updated) => {
     if (!updated) throw `${id} not updated`;
@@ -48,7 +48,7 @@ function update(
 }
 
 function remove(id: string): Promise<void> {
-  return MuralModel.findOneAndDelete({ id }).then((deleted) => {
+  return MuralModel.findOneAndDelete({ _id: id }).then((deleted) => {
     if (!deleted) throw `${id} not deleted`;
   });
 }

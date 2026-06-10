@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Boyle Heights Murals — Register</title>
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
+  </head>
+  <body class="page">
+    <auth-provider>
+      <h2>Register</h2>
+      <main class="card">
+        <login-form api="/auth/register">
+          <label>
+            <span>Username:</span>
+            <input name="username" autocomplete="off" />
+          </label>
+          <label>
+            <span>Password:</span>
+            <input type="password" name="password" />
+          </label>
+          <span slot="submit-label">Register</span>
+        </login-form>
+      </main>
+      <p>
+        Already have an account? <a href="/login.html">Sign in</a>
+      </p>
+    </auth-provider>
+
+    <script type="module" src="/src/register.ts"></script>
+  </body>
+</html>
