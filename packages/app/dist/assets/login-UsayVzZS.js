@@ -1,0 +1,1 @@
+import{a as e,c as t}from"./reset.css-VO8Yb4OM.js";import{t as n}from"./login-form-C24GU14h.js";t({"auth-provider":e.Provider,"login-form":n});

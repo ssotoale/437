@@ -32,12 +32,60 @@ export class MuralHeaderElement extends HTMLElement {
   `;
 
   static styles = css`
-    li {
-      display: none;
+    :host { display: block; }
+    header {
+      background: var(--color-background-header);
+      color: var(--color-text-inverted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--size-spacing-small) var(--size-spacing-medium);
+      font-family: var(--font-display);
     }
+    h1 {
+      color: var(--color-text-inverted);
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    svg.icon {
+      height: 1.6em;
+      width: 1.6em;
+      vertical-align: middle;
+      fill: currentColor;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: var(--size-spacing-medium);
+    }
+    nav p { font-size: 0.875rem; }
+    menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li { display: none; }
     .logged-in .when-signed-in,
     .logged-out .when-signed-out {
       display: block;
+    }
+    a {
+      color: var(--color-text-inverted);
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+    }
+    button {
+      background: var(--color-text-inverted);
+      color: var(--color-background-header);
+      border: none;
+      padding: 0.35rem 0.85rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: bold;
     }
   `;
 
