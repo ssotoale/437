@@ -12,7 +12,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 const staticDir = process.env.STATIC || "public";
 
-app.use(express.static(staticDir));
 app.use(express.json());
 
 app.get("/hello", (req: Request, res: Response) => {
@@ -29,6 +28,12 @@ app.use("/app", (_req: Request, res: Response) => {
     res.send(html)
   );
 });
+
+app.get("/", (_req: Request, res: Response) => {
+  res.redirect("/app");
+});
+
+app.use(express.static(staticDir));
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
