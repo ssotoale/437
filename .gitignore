@@ -1,4 +1,3 @@
 node_modules/
-.envpackages/server/.env
 packages/server/.env
 packages/app/dist/
